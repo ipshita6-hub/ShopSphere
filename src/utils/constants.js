@@ -1,16 +1,17 @@
 /**
- * Application constants
+ * Application constants for ShopSphere
+ * Centralized configuration and constant values
  */
 
-// API Configuration
-export const API_CONFIG = {
-  BASE_URL: process.env.REACT_APP_API_URL || 'http://localhost:3001/api',
-  TIMEOUT: 10000,
-  RETRY_ATTEMPTS: 3,
+export const APP_CONFIG = {
+  APP_NAME: 'ShopSphere',
+  VERSION: '1.0.0',
+  TAX_RATE: 0.08,
+  CURRENCY: 'USD',
 };
 
-// Product Categories
 export const PRODUCT_CATEGORIES = [
+  'All',
   'Electronics',
   'Footwear',
   'Sports',
@@ -18,35 +19,36 @@ export const PRODUCT_CATEGORIES = [
   'Clothing',
 ];
 
-// Price Range
 export const PRICE_RANGE = {
   MIN: 0,
   MAX: 300,
+  STEP: 10,
 };
 
-// Sort Options
-export const SORT_OPTIONS = {
-  ASC: 'asc',
-  DESC: 'desc',
+export const SORT_OPTIONS = [
+  { value: 'default', label: 'Default' },
+  { value: 'price-asc', label: 'Price: Low to High' },
+  { value: 'price-desc', label: 'Price: High to Low' },
+  { value: 'rating', label: 'Highest Rated' },
+];
+
+export const QUANTITY_LIMITS = {
+  MIN: 1,
+  MAX: 999,
 };
 
-// Cart Actions
-export const CART_ACTIONS = {
-  ADD: 'ADD_TO_CART',
-  REMOVE: 'REMOVE_FROM_CART',
-  UPDATE: 'UPDATE_QUANTITY',
-  CLEAR: 'CLEAR_CART',
+export const PAGINATION = {
+  ITEMS_PER_PAGE: 12,
+  MAX_PAGES: 10,
 };
 
-// Filter Actions
-export const FILTER_ACTIONS = {
-  SET_CATEGORY: 'SET_CATEGORY',
-  SET_PRICE_RANGE: 'SET_PRICE_RANGE',
-  SET_SORT: 'SET_SORT',
-  RESET: 'RESET_FILTERS',
+export const API_ENDPOINTS = {
+  PRODUCTS: '/api/products',
+  PRODUCT_DETAIL: '/api/products/:id',
+  CHECKOUT: '/api/checkout',
+  ORDERS: '/api/orders',
 };
 
-// HTTP Status Codes
 export const HTTP_STATUS = {
   OK: 200,
   CREATED: 201,
@@ -54,76 +56,20 @@ export const HTTP_STATUS = {
   UNAUTHORIZED: 401,
   FORBIDDEN: 403,
   NOT_FOUND: 404,
-  INTERNAL_SERVER_ERROR: 500,
+  SERVER_ERROR: 500,
 };
 
-// Error Messages
-export const ERROR_MESSAGES = {
+export const MESSAGES = {
+  PRODUCT_ADDED: 'Product added to cart successfully',
+  PRODUCT_REMOVED: 'Product removed from cart',
+  CHECKOUT_SUCCESS: 'Order placed successfully',
+  CHECKOUT_ERROR: 'Checkout failed. Please try again.',
   NETWORK_ERROR: 'Network error. Please check your connection.',
-  INVALID_EMAIL: 'Please enter a valid email address.',
-  INVALID_ZIP_CODE: 'Please enter a valid zip code.',
-  REQUIRED_FIELD: 'This field is required.',
-  PRODUCT_NOT_FOUND: 'Product not found.',
-  CHECKOUT_FAILED: 'Checkout failed. Please try again.',
+  VALIDATION_ERROR: 'Please fill in all required fields.',
 };
 
-// Success Messages
-export const SUCCESS_MESSAGES = {
-  ITEM_ADDED: 'Item added to cart successfully.',
-  ITEM_REMOVED: 'Item removed from cart.',
-  ORDER_PLACED: 'Order placed successfully!',
-  FILTERS_RESET: 'Filters have been reset.',
-};
-
-// Local Storage Keys
-export const STORAGE_KEYS = {
-  CART: 'shopsphere_cart',
-  FILTERS: 'shopsphere_filters',
-  USER: 'shopsphere_user',
-  TOKEN: 'shopsphere_token',
-};
-
-// Pagination
-export const PAGINATION = {
-  DEFAULT_PAGE: 1,
-  DEFAULT_LIMIT: 20,
-  MAX_LIMIT: 100,
-};
-
-// Debounce Delays
-export const DEBOUNCE_DELAYS = {
-  SEARCH: 300,
-  FILTER: 500,
-  RESIZE: 250,
-};
-
-// Animation Durations (ms)
-export const ANIMATION_DURATIONS = {
-  FAST: 150,
+export const ANIMATION_DURATION = {
+  FAST: 200,
   NORMAL: 300,
   SLOW: 500,
-};
-
-// Regex Patterns
-export const REGEX_PATTERNS = {
-  EMAIL: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-  ZIP_CODE: /^\d{5}(-\d{4})?$/,
-  PHONE: /^\d{10}$/,
-  URL: /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/,
-};
-
-// Routes
-export const ROUTES = {
-  HOME: '/',
-  PRODUCT_DETAIL: '/product/:id',
-  CART: '/cart',
-  CHECKOUT: '/checkout',
-};
-
-// Feature Flags
-export const FEATURE_FLAGS = {
-  ENABLE_WISHLIST: false,
-  ENABLE_REVIEWS: false,
-  ENABLE_RECOMMENDATIONS: false,
-  ENABLE_ANALYTICS: true,
 };
