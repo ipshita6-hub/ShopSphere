@@ -15,6 +15,16 @@ const ProductList = () => {
   const filteredAndSortedProducts = useMemo(() => {
     let result = products;
 
+    // Filter by search term
+    if (filters.searchTerm.trim()) {
+      const searchLower = filters.searchTerm.toLowerCase();
+      result = result.filter(
+        (p) =>
+          p.name.toLowerCase().includes(searchLower) ||
+          p.description.toLowerCase().includes(searchLower)
+      );
+    }
+
     // Filter by category
     if (filters.category !== 'all') {
       result = result.filter((p) => p.category === filters.category);
