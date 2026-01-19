@@ -1,18 +1,22 @@
 import React, { useMemo } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import ProductCard from '../components/ProductCard';
 import FilterBar from '../components/FilterBar';
+import Pagination from '../components/Pagination';
+import { setCurrentPage, setItemsPerPage } from '../store/slices/paginationSlice';
 
 const ProductList = () => {
+  const dispatch = useDispatch();
   const products = useSelector((state) => state.products.items);
   const filters = useSelector((state) => state.filters);
+  const pagination = useSelector((state) => state.pagination);
 
   const categories = useMemo(() => {
     const cats = new Set(products.map((p) => p.category));
     return Array.from(cats).sort();
   }, [products]);
 
-  const filteredAndSortedProducts = useMemo(() => {
+  const filteredProducts = useMemo(() => {
     let result = products;
 
     // Filter by search term
@@ -43,16 +47,43 @@ const ProductList = () => {
     return result;
   }, [products, filters]);
 
+  const paginatedProducts = useMemo(() => {
+    const startIndex = (pagination.currentPage - 1) * pagination.itemsPerPage;
+    const endIndex = startIndex + pagination.itemsPerPage;
+    return filteredProducts.slice(startIndex, endIndex);
+  }, [filteredProducts, pagination.currentPage, pagination.itemsPerPage]);
+
+  const totalPages = Math.ceil(filteredProducts.length / pagination.itemsPerPage);
+
+  const handlePageChange = (pageNumber) => {
+    dispatch(setCurrentPage(pageNumber));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleItemsPerPageChange = (itemsPerPage) => {
+    dispatch(setItemsPerPage(itemsPerPage));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <div className="product-list-page">
       <FilterBar categories={categories} />
       <div className="products-container">
-        {filteredAndSortedProducts.length > 0 ? (
-          <div className="products-grid">
-            {filteredAndSortedProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
+        {paginatedProducts.length > 0 ? (
+          <>
+            <div className="products-grid">
+              {paginatedProducts.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
+            <Pagination
+              currentPage={pagination.currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+              itemsPerPage={pagination.itemsPerPage}
+              onItemsPerPageChange={handleItemsPerPageChange}
+            />
+          </>
         ) : (
           <div className="no-products">
             <p>No products found. Try adjusting your filters.</p>
