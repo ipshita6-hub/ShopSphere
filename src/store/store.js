@@ -3,6 +3,7 @@ import productsReducer from './slices/productsSlice';
 import filtersReducer from './slices/filtersSlice';
 import cartReducer from './slices/cartSlice';
 import paginationReducer from './slices/paginationSlice';
+import wishlistReducer from './slices/wishlistSlice';
 
 export const store = configureStore({
   reducer: {
@@ -10,5 +11,6 @@ export const store = configureStore({
     filters: filtersReducer,
     cart: cartReducer,
     pagination: paginationReducer,
+    wishlist: wishlistReducer,
   },
 });
