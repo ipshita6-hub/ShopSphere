@@ -5,6 +5,7 @@ import cartReducer from './slices/cartSlice';
 import paginationReducer from './slices/paginationSlice';
 import wishlistReducer from './slices/wishlistSlice';
 import reviewsReducer from './slices/reviewsSlice';
+import comparisonReducer from './slices/comparisonSlice';
 
 export const store = configureStore({
   reducer: {
@@ -14,5 +15,6 @@ export const store = configureStore({
     pagination: paginationReducer,
     wishlist: wishlistReducer,
     reviews: reviewsReducer,
+    comparison: comparisonReducer,
   },
 });
