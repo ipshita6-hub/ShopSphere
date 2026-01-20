@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCategory, setPriceRange, setSort, setSearchTerm, resetFilters } from '../store/slices/filtersSlice';
+import { setCategory, setPriceRange, setSort, setSearchTerm, setMinRating, resetFilters } from '../store/slices/filtersSlice';
 
 const FilterBar = ({ categories }) => {
   const dispatch = useDispatch();
@@ -21,6 +21,10 @@ const FilterBar = ({ categories }) => {
 
   const handleSortChange = (e) => {
     dispatch(setSort(e.target.value));
+  };
+
+  const handleMinRatingChange = (e) => {
+    dispatch(setMinRating(parseInt(e.target.value, 10)));
   };
 
   const handleReset = () => {
@@ -62,6 +66,19 @@ const FilterBar = ({ categories }) => {
           max="300"
           value={filters.priceRange[1]}
           onChange={handlePriceChange}
+        />
+      </div>
+
+      <div className="filter-group">
+        <label htmlFor="rating">Min Rating: {filters.minRating} ★</label>
+        <input
+          id="rating"
+          type="range"
+          min="0"
+          max="5"
+          step="1"
+          value={filters.minRating}
+          onChange={handleMinRatingChange}
         />
       </div>
 

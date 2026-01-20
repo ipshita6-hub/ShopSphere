@@ -7,6 +7,7 @@ const filtersSlice = createSlice({
     priceRange: [0, 300],
     sort: 'asc',
     searchTerm: '',
+    minRating: 0,
   },
   reducers: {
     setCategory: (state, action) => {
@@ -21,14 +22,18 @@ const filtersSlice = createSlice({
     setSearchTerm: (state, action) => {
       state.searchTerm = action.payload;
     },
+    setMinRating: (state, action) => {
+      state.minRating = action.payload;
+    },
     resetFilters: (state) => {
       state.category = 'all';
       state.priceRange = [0, 300];
       state.sort = 'asc';
       state.searchTerm = '';
+      state.minRating = 0;
     },
   },
 });
 
-export const { setCategory, setPriceRange, setSort, setSearchTerm, resetFilters } = filtersSlice.actions;
+export const { setCategory, setPriceRange, setSort, setSearchTerm, setMinRating, resetFilters } = filtersSlice.actions;
 export default filtersSlice.reducer;

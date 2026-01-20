@@ -39,6 +39,9 @@ const ProductList = () => {
       (p) => p.price >= filters.priceRange[0] && p.price <= filters.priceRange[1]
     );
 
+    // Filter by minimum rating
+    result = result.filter((p) => p.rating >= filters.minRating);
+
     // Sort by price
     result = result.sort((a, b) => {
       return filters.sort === 'asc' ? a.price - b.price : b.price - a.price;
