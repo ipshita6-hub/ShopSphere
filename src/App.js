@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ErrorBoundary from './components/ErrorBoundary';
 import Header from './components/Header';
+import Breadcrumb from './components/Breadcrumb';
 import NotificationCenter from './components/NotificationCenter';
 import ProductList from './pages/ProductList';
 import ProductDetail from './pages/ProductDetail';
@@ -18,6 +19,7 @@ function App() {
         <div className="App">
           <NotificationCenter />
           <Header />
+          <Breadcrumb />
           <main className="main-content">
             <Routes>
               <Route path="/" element={<ProductList />} />
