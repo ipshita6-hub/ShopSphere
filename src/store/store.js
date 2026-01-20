@@ -6,6 +6,7 @@ import paginationReducer from './slices/paginationSlice';
 import wishlistReducer from './slices/wishlistSlice';
 import reviewsReducer from './slices/reviewsSlice';
 import comparisonReducer from './slices/comparisonSlice';
+import notificationReducer from './slices/notificationSlice';
 
 export const store = configureStore({
   reducer: {
@@ -16,5 +17,6 @@ export const store = configureStore({
     wishlist: wishlistReducer,
     reviews: reviewsReducer,
     comparison: comparisonReducer,
+    notifications: notificationReducer,
   },
 });
