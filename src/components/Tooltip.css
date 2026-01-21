@@ -1,0 +1,127 @@
+.tooltip-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-trigger {
+  cursor: help;
+}
+
+.tooltip {
+  position: fixed;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  z-index: 1000;
+  animation: tooltipFadeIn 0.2s ease;
+  pointer-events: none;
+}
+
+@keyframes tooltipFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.tooltip-dark {
+  background: #333;
+  color: white;
+}
+
+.tooltip-light {
+  background: white;
+  color: #333;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tooltip-arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+.tooltip-top .tooltip-arrow {
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 4px 4px 0 4px;
+  border-color: #333 transparent transparent transparent;
+}
+
+.tooltip-light.tooltip-top .tooltip-arrow {
+  border-color: #ddd transparent transparent transparent;
+}
+
+.tooltip-bottom .tooltip-arrow {
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 0 4px 4px 4px;
+  border-color: transparent transparent #333 transparent;
+}
+
+.tooltip-light.tooltip-bottom .tooltip-arrow {
+  border-color: transparent transparent #ddd transparent;
+}
+
+.tooltip-left .tooltip-arrow {
+  right: -4px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 4px 0 4px 4px;
+  border-color: transparent transparent transparent #333;
+}
+
+.tooltip-light.tooltip-left .tooltip-arrow {
+  border-color: transparent transparent transparent #ddd;
+}
+
+.tooltip-right .tooltip-arrow {
+  left: -4px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 4px 4px 4px 0;
+  border-color: transparent #333 transparent transparent;
+}
+
+.tooltip-light.tooltip-right .tooltip-arrow {
+  border-color: transparent #ddd transparent transparent;
+}
+
+@media (max-width: 480px) {
+  .tooltip {
+    font-size: 11px;
+    padding: 6px 10px;
+  }
+
+  .tooltip-arrow {
+    border-width: 3px !important;
+  }
+
+  .tooltip-top .tooltip-arrow,
+  .tooltip-bottom .tooltip-arrow {
+    border-width: 3px 3px 0 3px !important;
+  }
+
+  .tooltip-bottom .tooltip-arrow {
+    border-width: 0 3px 3px 3px !important;
+  }
+
+  .tooltip-left .tooltip-arrow,
+  .tooltip-right .tooltip-arrow {
+    border-width: 3px 0 3px 3px !important;
+  }
+
+  .tooltip-right .tooltip-arrow {
+    border-width: 3px 3px 3px 0 !important;
+  }
+}
